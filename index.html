@@ -1,12 +1,182 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SanPatrick</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+import { motion } from "framer-motion";
+
+// =====================================================
+// SANPATRICK - FULL DJ WEBSITE (DEEP / TECH HOUSE)
+// IMPORTANT: Only Instagram images allowed
+// User must paste direct image URLs from @_sanpatrick_
+// =====================================================
+
+// ------------------------------
+// Inline Icons (no dependencies)
+// ------------------------------
+const PlayIcon = ({ className = "" }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M8 5v14l11-7z" />
+  </svg>
+);
+
+const InstagramIcon = ({ className = "" }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm10 2H7a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3zm-5 4a5 5 0 110 10 5 5 0 010-10z" />
+  </svg>
+);
+
+const MailIcon = ({ className = "" }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5v10z" />
+  </svg>
+);
+
+const SoundIcon = ({ className = "" }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M9 3v12.26A3.5 3.5 0 107 18V7h8V3H9z" />
+  </svg>
+);
+
+// =====================================================
+// ONLY INSTAGRAM IMAGES (PASTE REAL URLS HERE)
+// Example:
+// https://instagram.com/p/xxx/media/?size=l
+// or direct CDN image links
+// =====================================================
+const instagramGallery = [
+  // PASTE @_sanpatrick_ IMAGE URLS HERE
+];
+
+// =====================================================
+// MAIN SITE
+// =====================================================
+export default function SanPatrickSite() {
+  return (
+    <div className="bg-black text-white min-h-screen overflow-x-hidden relative">
+
+      {/* Ambient Glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-[800px] h-[800px] bg-red-600 opacity-20 blur-[200px] top-[-300px] left-[-300px]" />
+        <div className="absolute w-[700px] h-[700px] bg-red-900 opacity-20 blur-[220px] bottom-[-300px] right-[-300px]" />
+      </div>
+
+      {/* NAV */}
+      <header className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-5 bg-black/50 backdrop-blur-md border-b border-red-900/20">
+        <h1 className="font-bold tracking-widest">
+          San<span className="text-red-600">Patrick</span>
+        </h1>
+
+        <a
+          href="https://instagram.com/_sanpatrick_"
+          target="_blank"
+          className="flex items-center gap-2 text-gray-300 hover:text-red-500"
+        >
+          <InstagramIcon /> @_sanpatrick_
+        </a>
+      </header>
+
+      {/* HERO (cinematic / festival style) */}
+      <section className="h-screen flex items-center justify-center text-center px-6">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <h2 className="text-6xl md:text-8xl font-black tracking-tight">
+            San<span className="text-red-600">Patrick</span>
+          </h2>
+
+          <p className="mt-4 text-gray-400 tracking-[0.35em]">
+            DEEP HOUSE • TECH HOUSE • UNDERGROUND ENERGY
+          </p>
+
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            className="mt-10 px-10 py-3 bg-red-600 hover:bg-red-700 rounded-full flex items-center gap-2 mx-auto"
+          >
+            <PlayIcon /> PLAY SET
+          </motion.button>
+        </motion.div>
+      </section>
+
+      {/* ABOUT */}
+      <section className="py-28 px-6 max-w-6xl mx-auto">
+        <h2 className="text-5xl font-bold mb-8">SOBRE O ARTISTA</h2>
+        <p className="text-gray-400 text-lg leading-relaxed max-w-3xl">
+          SanPatrick é um DJ focado em deep house e tech house, criando sets
+          imersivos com grooves profundos, atmosfera underground e energia de pista.
+          Suas apresentações são construídas como experiências sensoriais, unindo
+          som, luz e estética futurista.
+        </p>
+      </section>
+
+      {/* GALLERY (INSTAGRAM ONLY) */}
+      <section className="py-20 px-6">
+        <h2 className="text-5xl font-bold text-center mb-12">GALERIA</h2>
+
+        {instagramGallery.length === 0 ? (
+          <div className="text-center text-gray-500 border border-red-900/30 rounded-2xl p-12 max-w-3xl mx-auto">
+            <p className="mb-2">📸 Nenhuma imagem adicionada ainda</p>
+            <p className="text-sm">
+              Adicione os links das fotos do Instagram @_sanpatrick_ no array <b>instagramGallery</b>
+            </p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {instagramGallery.map((img, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="h-72 rounded-2xl overflow-hidden border border-red-900/30"
+              >
+                <img
+                  src={img}
+                  className="w-full h-full object-cover"
+                  alt="SanPatrick"
+                />
+              </motion.div>
+            ))}
+          </div>
+        )}
+      </section>
+
+      {/* SETS */}
+      <section className="py-24 px-6 max-w-4xl mx-auto">
+        <h2 className="text-5xl font-bold mb-10 text-center">SETS AO VIVO</h2>
+
+        {[
+          "Deep Night Session",
+          "Tech House Underground",
+          "Groove Club Experience"
+        ].map((set, i) => (
+          <div
+            key={i}
+            className="flex justify-between items-center p-5 mb-4 rounded-xl border border-red-900/30 bg-white/5"
+          >
+            <div className="flex items-center gap-3">
+              <SoundIcon className="text-red-500" />
+              <span>{set}</span>
+            </div>
+            <PlayIcon className="text-red-500" />
+          </div>
+        ))}
+      </section>
+
+      {/* BOOKING */}
+      <section className="py-28 px-6 text-center">
+        <h2 className="text-5xl font-bold mb-4">BOOKING</h2>
+        <p className="text-gray-400 mb-8">
+          Shows • Clubs • Festivals • Eventos privados
+        </p>
+
+        <div className="flex justify-center gap-6">
+          <a href="https://instagram.com/_sanpatrick_" target="_blank">
+            <InstagramIcon className="hover:text-red-500" />
+          </a>
+          <MailIcon className="hover:text-red-500 cursor-pointer" />
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="py-10 text-center text-gray-600 border-t border-red-900/20">
+        © {new Date().getFullYear()} SanPatrick — Deep & Tech House Experience
+      </footer>
+    </div>
+  );
+}
